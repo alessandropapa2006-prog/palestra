@@ -7,14 +7,14 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f172a; /* Sfondo scuro moderno */
+            background-color: #0f172a;
             margin: 0;
             padding: 30px 0;
             color: #f8fafc;
             text-align: center;
         }
         .container {
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
             background: #1e293b;
             padding: 30px 15px;
@@ -24,7 +24,6 @@
             width: 95%;
         }
         
-        /* Contenitore Foto e Segnaposto Iniziali */
         .avatar-container {
             width: 120px;
             height: 120px;
@@ -35,7 +34,7 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            border: 4px solid #f97316; /* Arancione Fit Active */
+            border: 4px solid #f97316;
             object-fit: cover;
             display: block;
             box-shadow: 0 4px 10px rgba(249, 115, 22, 0.3);
@@ -64,7 +63,6 @@
         h1 { color: #ffffff; margin: 0 0 5px 0; font-size: 1.8rem; }
         .subtitle { color: #94a3b8; margin: 0 0 30px 0; font-size: 0.95rem; }
         
-        /* Bottoni perfettamente centrati e simmetrici su mobile */
         .button-container {
             display: flex;
             flex-direction: column;
@@ -92,7 +90,6 @@
         
         .result-section { display: none; animation: fadeIn 0.4s ease forwards; }
         
-        /* Grid allineata al centro esatto */
         .grid {
             display: flex;
             flex-direction: column;
@@ -103,7 +100,7 @@
         }
         
         .card {
-            border: 2px solid #334155; /* Tutti i bordi partono scuri */
+            border: 2px solid #334155;
             border-radius: 12px;
             padding: 24px;
             background: #1e293b;
@@ -111,12 +108,28 @@
             text-align: center;
             box-sizing: border-box;
             width: 100%;
-            max-width: 340px;
+            max-width: 320px;
+            position: relative;
         }
-        /* Il bordo si colora solo quando ci passi sopra (hover) */
         .card:hover { transform: translateY(-4px); border-color: #f97316; }
+        .card.highlight { border-color: #f97316; }
         
-        .price { font-size: 32px; font-weight: bold; color: #f97316; margin: 15px 0; }
+        .badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #f97316;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .price { font-size: 32px; font-weight: bold; color: #f97316; margin: 15px 0 5px 0; }
         .total { font-size: 13px; color: #94a3b8; font-weight: 500; display: block; margin-bottom: 15px; }
         
         .features-list {
@@ -151,7 +164,6 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Setup PC per affiancare gli elementi */
         @media (min-width: 769px) {
             .button-container {
                 flex-direction: row;
@@ -168,7 +180,6 @@
 <body>
 
 <div class="container">
-    <!-- Contenitore Foto: se l'immagine manca, mostra il cerchio AP automaticamente -->
     <div class="avatar-container">
         <div class="profile-placeholder">AP</div>
         <img src="alessandro.jpg" alt="Alessandro Personal Trainer" class="profile-img" onerror="this.style.display='none';">
@@ -184,20 +195,20 @@
         <button class="btn" onclick="showPlan(3, this)">3 Volte a Settimana</button>
     </div>
 
-    <!-- CASO 1: LEZIONI SINGOLE / PACCHETTI / SCHEDA -->
+    <!-- CASO 1: SINGOLE / PACCHETTI / SCHEDA -->
     <div id="plan-1" class="result-section">
-        <h2 style="font-size: 1.3rem; margin-bottom: 20px; color: #f97316;"></h2>
+        <h2 style="font-size: 1.3rem; margin-bottom: 20px; color: #f97316;">Soluzioni Sciolte e Ingressi</h2>
         <div class="grid">
             <div class="card">
                 <h3>Lezione Singola</h3>
                 <p style="color: #94a3b8;">Massima flessibilità</p>
-                <div class="price">€30 <span style="font-size:14px; color:#94a3b8; font-weight:normal;">/sessione</span></div>
+                <div class="price">€35 <span style="font-size:14px; color:#94a3b8; font-weight:normal;">/sessione</span></div>
                 <ul class="features-list">
                     <li>1 Ora di allenamento 1-to-1</li>
                     <li>Correzione tecnica focalizzata</li>
                     <li>Nessun vincolo temporale</li>
                 </ul>
-                <a href="https://wa.me/393518324330?text=Ciao%20Alessandro,%20vorrei%20prenotare%20una%20Lezione%20Singola%20a%2030€" target="_blank" class="cta-btn">Prenota una lezione</a>
+                <a href="https://wa.me/393518324330?text=Ciao%20Alessandro,%20vorrei%20prenotare%20una%20Lezione%20Singola%20a%2035€" target="_blank" class="cta-btn">Prenota una lezione</a>
             </div>
             <div class="card">
                 <h3>Pacchetto 4 Lezioni</h3>
@@ -226,42 +237,90 @@
         </div>
     </div>
 
-    <!-- CASO 2: 2 ALLENAMENTI -->
+    <!-- CASO 2: 2 ALLENAMENTI A SETTIMANA -->
     <div id="plan-2" class="result-section">
-        <h2 style="font-size: 1.3rem; margin-bottom: 20px; color: #f97316;">Percorso Mensile Continuativo</h2>
+        <h2 style="font-size: 1.3rem; margin-bottom: 20px; color: #f97316;">Percorsi (2 Volte a Settimana)</h2>
         <div class="grid">
             <div class="card">
-                <h3>Frequenza Costante</h3>
-                <p style="color: #94a3b8;">2 Volte a Settimana</p>
-                <div class="price">€200 <span style="font-size:14px; color:#94a3b8; font-weight:normal;">/mese commercializzato</span></div>
-                <span class="total" style="color:#f97316; font-weight:bold;">Prezzo fisso bloccato</span>
+                <h3>1 MESE</h3>
+                <p style="color: #94a3b8;">Breve termine</p>
+                <div class="price">€300 <span style="font-size:14px; color:#94a3b8; font-weight:normal;">/mese</span></div>
+                <span class="total">Frequenza standard</span>
                 <ul class="features-list">
-                    <li>2 Allenamenti a settimana sempre garantiti</li>
-                    <li>Valido per l'intera durata del mese commerciale</li>
-                    <li>Monitoraggio dei progressi sul campo</li>
-                    <li>Supporto diretto e priorità appuntamenti</li>
+                    <li>2 Allenamenti/settimana garantiti</li>
+                    <li>Monitoraggio costatnte</li>
+                    <li>Supporto chat dedicato</li>
                 </ul>
-                <a href="https://wa.me/393518324330?text=Ciao%20Alessandro,%20vorrei%20attivare%20il%20percorso%20mensile%20da%202%20volte%20a%20settimana%20a%20200€" target="_blank" class="cta-btn">Inizia il percorso</a>
+                <a href="https://wa.me/393518324330?text=Ciao%20Alessandro,%20vorrei%20informazioni%20sul%20percorso%201%20Mese%20(2%20volte%20a%20settimana)" target="_blank" class="cta-btn">Inizia 1 Mese</a>
+            </div>
+            <div class="card">
+                <h3>3 MESI</h3>
+                <p style="color: #94a3b8;">Medio termine</p>
+                <div class="price">€250 <span style="font-size:14px; color:#94a3b8; font-weight:normal;">/mese</span></div>
+                <span class="total" style="color:#f97316; font-weight:bold;">Risparmi 150€ in totale!</span>
+                <ul class="features-list">
+                    <li>2 Allenamenti/settimana garantiti</li>
+                    <li>Adattamento progressivo</li>
+                    <li>Priorità sulla scelta orari</li>
+                </ul>
+                <a href="https://wa.me/393518324330?text=Ciao%20Alessandro,%20vorrei%20attivare%20il%20piano%203%20Mesi%20(2%20volte%20a%20settimana)%20a%20250€/mese" target="_blank" class="cta-btn">Scegli 3 Mesi</a>
+            </div>
+            <div class="card highlight">
+                <div class="badge">Miglior Trasformazione</div>
+                <h3>6 MESI</h3>
+                <p style="color: #94a3b8;">Lungo termine</p>
+                <div class="price">€200 <span style="font-size:14px; color:#94a3b8; font-weight:normal;">/mese</span></div>
+                <span class="total" style="color:#f97316; font-weight:bold;">Risparmi 600€ in totale!</span>
+                <ul class="features-list">
+                    <li>2 Allenamenti/settimana garantiti</li>
+                    <li>Risultati fisici concreti e duraturi</li>
+                    <li>Supporto prioritario H24</li>
+                </ul>
+                <a href="https://wa.me/393518324330?text=Ciao%20Alessandro,%20voglio%20sbloccare%20l'offerta%206%20Mesi%20(2%20volte%20a%20settimana)%20a%20200€/mese" target="_blank" class="cta-btn">Sblocca 6 Mesi</a>
             </div>
         </div>
     </div>
 
-    <!-- CASO 3: 3 ALLENAMENTI -->
+    <!-- CASO 3: 3 ALLENAMENTI A SETTIMANA -->
     <div id="plan-3" class="result-section">
-        <h2 style="font-size: 1.3rem; margin-bottom: 20px; color: #f97316;">Percorso Mensile Intensivo</h2>
+        <h2 style="font-size: 1.3rem; margin-bottom: 20px; color: #f97316;">Percorsi (3 Volte a Settimana)</h2>
         <div class="grid">
             <div class="card">
-                <h3>Massima Performance</h3>
-                <p style="color: #94a3b8;">3 Volte a Settimana</p>
-                <div class="price">€300 <span style="font-size:14px; color:#94a3b8; font-weight:normal;">/mese commercializzato</span></div>
-                <span class="total" style="color:#f97316; font-weight:bold;">Prezzo fisso bloccato</span>
+                <h3>1 MESE</h3>
+                <p style="color: #94a3b8;">Breve termine</p>
+                <div class="price">€400 <span style="font-size:14px; color:#94a3b8; font-weight:normal;">/mese</span></div>
+                <span class="total">Frequenza standard</span>
                 <ul class="features-list">
-                    <li>3 Allenamenti a settimana sempre garantiti</li>
-                    <li>Valido per l'intera durata del mese commerciale</li>
-                    <li>Ottimizzazione massima dello stimolo muscolare</li>
-                    <li>Supporto continuo h24 e massima priorità</li>
+                    <li>3 Allenamenti/settimana garantiti</li>
+                    <li>Stimolo e intensità massima</li>
+                    <li>Supporto chat dedicato</li>
                 </ul>
-                <a href="https://wa.me/393518324330?text=Ciao%20Alessandro,%20vorrei%20attivare%20il%20percorso%20mensile%20da%203%20volte%20a%20settimana%20a%20300€" target="_blank" class="cta-btn">Inizia il percorso</a>
+                <a href="https://wa.me/393518324330?text=Ciao%20Alessandro,%20vorrei%20informazioni%20sul%20percorso%201%20Mese%20(3%20volte%20a%20settimana)" target="_blank" class="cta-btn">Inizia 1 Mese</a>
+            </div>
+            <div class="card">
+                <h3>3 MESI</h3>
+                <p style="color: #94a3b8;">Medio termine</p>
+                <div class="price">€350 <span style="font-size:14px; color:#94a3b8; font-weight:normal;">/mese</span></div>
+                <span class="total" style="color:#f97316; font-weight:bold;">Risparmi 150€ in totale!</span>
+                <ul class="features-list">
+                    <li>3 Allenamenti/settimana garantiti</li>
+                    <li>Trasformazione corporea rapida</li>
+                    <li>Priorità sulla scelta orari</li>
+                </ul>
+                <a href="https://wa.me/393518324330?text=Ciao%20Alessandro,%20vorrei%20attivare%20il%20piano%203%20Mesi%20(3%20volte%20a%20settimana)%20a%20350€/mese" target="_blank" class="cta-btn">Scegli 3 Mesi</a>
+            </div>
+            <div class="card highlight">
+                <div class="badge">Miglior Trasformazione</div>
+                <h3>6 MESI</h3>
+                <p style="color: #94a3b8;">Lungo termine</p>
+                <div class="price">€300 <span style="font-size:14px; color:#94a3b8; font-weight:normal;">/mese</span></div>
+                <span class="total" style="color:#f97316; font-weight:bold;">Risparmi 600€ in totale!</span>
+                <ul class="features-list">
+                    <li>3 Allenamenti/settimana garantiti</li>
+                    <li>Cambiamento radicale garantito</li>
+                    <li>Supporto prioritario H24</li>
+                </ul>
+                <a href="https://wa.me/393518324330?text=Ciao%20Alessandro,%20voglio%20sbloccare%20l'offerta%206%20Mesi%20(3%20volte%20a%20settimana)%20a%20300€/mese" target="_blank" class="cta-btn">Sblocca 6 Mesi</a>
             </div>
         </div>
     </div>
